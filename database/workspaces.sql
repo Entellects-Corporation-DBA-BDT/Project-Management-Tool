@@ -1,5 +1,11 @@
--- Supplemental tables for flowspace_db: workspaces and their members.
--- Run after schema.sql with: psql -U postgres -d flowspace_db -f workspaces.sql
+-- Core tables for flowspace_db: workspaces and their members.
+-- Creates the database, so run this before schema.sql:
+--   psql -U postgres -f workspaces.sql
+--   psql -U postgres -d flowspace_db -f schema.sql
+
+CREATE DATABASE flowspace_db;
+
+\c flowspace_db
 
 -- Workspaces: the dedicated environment a team sets up before creating projects.
 CREATE TABLE workspaces (
