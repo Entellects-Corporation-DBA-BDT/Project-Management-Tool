@@ -1,4 +1,4 @@
--- Mock database for TeamFlow Manager.
+-- TeamFlow Manager core schema: projects, milestones, and tasks.
 -- Run after workspaces.sql:
 --   psql -U postgres -f workspaces.sql
 --   psql -U postgres -d teamflow_db -f schema.sql
@@ -25,7 +25,8 @@ CREATE TABLE projects (
     start_date      DATE NOT NULL,
     end_date        DATE,
     created_at      TIMESTAMP NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMP NOT NULL DEFAULT NOW()
+    updated_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT chk_projects_dates CHECK (end_date IS NULL OR end_date >= start_date)
 );
 
 CREATE INDEX idx_projects_workspace_id ON projects(workspace_id);

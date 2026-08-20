@@ -5,8 +5,8 @@ const Dashboard = () => {
     <section className="page">
       <h1>Project status</h1>
       <p className="page__lede">
-        Live dashboards will read from Postgres with RLS. This view uses fixture
-        data for the current sprint.
+        Workspace health for the current sprint, including open work, delivery
+        risk, and recent activity.
       </p>
       <div className="stats">
         {dashboardStats.map((stat) => (
