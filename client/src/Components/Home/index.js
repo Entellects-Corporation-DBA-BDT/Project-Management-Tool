@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import GanttChart from "../GanttChart";
@@ -10,21 +11,24 @@ const Home = () => {
       <Navbar />
 
       <section className="hero">
+        <p className="hero__eyebrow">AI-enabled project execution</p>
         <h1>
-          Any technology. Any platform. Anywhere in the world.
+          One place for status, issues, and
           <br />
-          Brought together in <span>one virtual workspace</span>.
+          <span>AI-assisted project intelligence</span>.
         </h1>
         <p>
-          Our project management tool fetches everything your team relies on -
-          Gantt charts, workload management, dashboards, automations, and
-          integrations - and brings it into a single, connected place.
+          TeamFlow Manager is an AI-enabled project execution and management
+          platform: dashboards and Gantt timelines, issue tracking and sprints,
+          role-based collaboration, reporting, and a shared AI gateway.
         </p>
-        <button className="hero__cta">Set Up Your Workspace</button>
+        <Link to="/login" className="hero__cta">
+          Open the workspace preview
+        </Link>
       </section>
 
       <section id="tools" className="tools">
-        <h2>Everything your team needs, in one place</h2>
+        <h2>Project execution, collaboration, and intelligence</h2>
         <div className="tools__grid">
           {coreTools.map((tool) => (
             <div className="tool-card" key={tool.id}>
@@ -37,11 +41,10 @@ const Home = () => {
       </section>
 
       <section id="workspace" className="workspace">
-        <h2>Set up your dedicated workspace in minutes</h2>
+        <h2>Shared identity, then the work</h2>
         <p className="section-lede">
-          It's important to have a well set up environment so work can be
-          managed in a productive, intuitive manner. Setting it up takes only
-          a couple of minutes.
+          Authentication, roles, notifications, files, and audit history are
+          shared services. The product layer is the backlog, sprint, and timeline.
         </p>
         <div className="workspace__steps">
           {workspaceSteps.map((item) => (
@@ -56,21 +59,19 @@ const Home = () => {
 
       <section id="tasks" className="tasks">
         <div className="tasks__text">
-          <h2>Get work done, in context</h2>
+          <h2>From epic to sprint to status</h2>
           <p>
-            We take a wide view over projects - from building a portfolio,
-            through planning and tracking a single project, and into task
-            management. Task management is all about short-term execution:
-            the moment a longer-term plan turns into work your team can pick
-            up today.
+            Work rolls from epics into stories, bugs, and tasks, then into a
+            sprint board with comments, files, and reporting. The timeline
+            stays in sync as progress changes.
           </p>
         </div>
         <div className="tasks__hierarchy">
-          <div className="hierarchy-node">Portfolio</div>
+          <div className="hierarchy-node">Epic</div>
           <div className="hierarchy-arrow">→</div>
-          <div className="hierarchy-node">Project</div>
+          <div className="hierarchy-node">Backlog</div>
           <div className="hierarchy-arrow">→</div>
-          <div className="hierarchy-node hierarchy-node--active">Tasks</div>
+          <div className="hierarchy-node hierarchy-node--active">Sprint</div>
         </div>
       </section>
 
@@ -92,11 +93,10 @@ const Home = () => {
       </section>
 
       <section id="gantt" className="gantt-section">
-        <h2>Manage your projects with a visual Gantt chart</h2>
+        <h2>Timeline and Gantt-style visibility</h2>
         <p className="section-lede">
-          As tasks progress, all changes are automatically reflected on your
-          Gantt chart - taking the tedious work off of you and your team's
-          plate.
+          Preview of the current delivery track. Live data and drag-to-reschedule
+          are still in progress.
         </p>
         <GanttChart />
       </section>

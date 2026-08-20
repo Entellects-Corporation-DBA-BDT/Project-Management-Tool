@@ -1,11 +1,12 @@
--- Mock database for the FlowSpace project management tool.
--- Run after workspaces.sql, since projects reference workspaces:
+-- Mock database for TeamFlow Manager.
+-- Run after workspaces.sql:
 --   psql -U postgres -f workspaces.sql
---   psql -U postgres -d flowspace_db -f schema.sql
+--   psql -U postgres -d teamflow_db -f schema.sql
+--   psql -U postgres -d teamflow_db -f work_items.sql
+--   psql -U postgres -d teamflow_db -f shared_services.sql
 
-\c flowspace_db
+\c teamflow_db
 
--- Keeps updated_at columns current on every UPDATE, across any table that has one.
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -14,7 +15,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Projects: the container for a team's work (portfolio -> project -> tasks).
 CREATE TABLE projects (
     id              SERIAL PRIMARY KEY,
     workspace_id    INTEGER NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
@@ -34,7 +34,6 @@ CREATE TRIGGER trg_projects_updated_at
     BEFORE UPDATE ON projects
     FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
--- Milestones: key dates on a project timeline, used to anchor the Gantt chart.
 CREATE TABLE milestones (
     id              SERIAL PRIMARY KEY,
     project_id      INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -46,7 +45,6 @@ CREATE TABLE milestones (
 
 CREATE INDEX idx_milestones_project_id ON milestones(project_id);
 
--- Tasks: individual Gantt chart rows tied to a project.
 CREATE TABLE tasks (
     id              SERIAL PRIMARY KEY,
     project_id      INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,

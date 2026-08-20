@@ -1,89 +1,84 @@
-// Mock data describing the platform - stands in for a real features/CMS API.
-
 export const coreTools = [
-  {
-    id: "gantt",
-    icon: "📊",
-    title: "Gantt Chart",
-    description:
-      "Visualize your entire timeline. As tasks progress, every change is automatically reflected on the chart.",
-  },
-  {
-    id: "workload",
-    icon: "👥",
-    title: "Workload Management",
-    description:
-      "See exactly who is working on what, spot overallocation early, and rebalance your team in a click.",
-  },
   {
     id: "dashboards",
     icon: "📈",
-    title: "Dashboards",
+    title: "Status dashboards",
     description:
-      "Real-time, shareable dashboards give leadership visibility into progress across every project.",
+      "Real-time project health, timeline, and Gantt-style visibility for leads and contributors.",
   },
   {
-    id: "automations",
-    icon: "⚙️",
-    title: "Automations",
+    id: "issues",
+    icon: "🎫",
+    title: "Issues, stories & epics",
     description:
-      "Automate repetitive status updates, approvals, and hand-offs so your team can focus on real work.",
+      "Track bugs, stories, tasks, and epics in a shared backlog with sprint planning and progress.",
   },
   {
-    id: "integrations",
-    icon: "🔗",
-    title: "Integrations",
+    id: "collab",
+    icon: "👥",
+    title: "Role-based collaboration",
     description:
-      "Connect the tools you already use so any technology, on any platform, lives in one workspace.",
+      "Comments, notifications, file sharing, and management reporting scoped by workspace role.",
+  },
+  {
+    id: "ai",
+    icon: "✨",
+    title: "AI project intelligence",
+    description:
+      "Status summaries, risk classification, prioritization suggestions, and natural-language search.",
+  },
+  {
+    id: "reporting",
+    icon: "📋",
+    title: "Reporting & audit",
+    description:
+      "Workload insights, analytics, and an audit trail designed for shared identity and entitlements.",
   },
 ];
 
 export const workspaceSteps = [
   {
     step: 1,
-    title: "Create your workspace",
-    description: "Spin up a dedicated space for your team in seconds.",
+    title: "Sign in to your workspace",
+    description: "Centralized identity via Supabase Auth, with roles and product entitlements.",
   },
   {
     step: 2,
-    title: "Build your project structure",
-    description:
-      "Set up a well-organized environment so work is managed productively and intuitively.",
+    title: "Plan the backlog and sprint",
+    description: "Organize epics, stories, and tasks, then pull work into the current sprint.",
   },
   {
     step: 3,
-    title: "Invite your team",
-    description: "Bring collaborators in from any technology or platform, anywhere in the world.",
+    title: "Track, collaborate, and review",
+    description: "Comment, attach files, watch the timeline, and let AI draft the status update.",
   },
 ];
 
 export const valueProps = [
   {
     id: "plan",
-    title: "Plan, execute, and track projects of any size",
+    title: "One place for status, issues, and execution",
     description:
-      "Easily assign tasks and prioritize what's most important. Set timelines, milestones, and dependencies, and manage your team's entire workload all in one place.",
+      "Plan sprints, track bugs and stories, and see Gantt-style progress without switching tools.",
   },
   {
     id: "love",
-    title: "The platform your team will actually love to use",
+    title: "Collaboration that respects roles",
     description:
-      "Collaborate seamlessly across teams and departments to gain visibility into the progress of your work, on a platform they'll enjoy using every day.",
+      "Owners, admins, members, and viewers share comments, files, and reports with least-privilege access.",
   },
   {
     id: "flexible",
-    title: "100% customizable and flexible to fit any workflow",
+    title: "AI-assisted project intelligence",
     description:
-      "There are many ways to manage a project. Shape your workflow to fit your team - for any project, process, department, or customer.",
+      "Summaries, risk flags, workload insights, and semantic search — routed through a shared AI gateway.",
   },
 ];
 
-// Sample rows for the fake Gantt chart preview, timeline expressed as
-// week offsets/spans across a 6-week window.
 export const ganttTasks = [
-  { id: 1, name: "Discovery & Planning", startWeek: 0, duration: 1, progress: 100, color: "#6366f1" },
-  { id: 2, name: "Project Structure Setup", startWeek: 1, duration: 1, progress: 100, color: "#22c55e" },
-  { id: 3, name: "Design Milestone", startWeek: 2, duration: 2, progress: 65, color: "#f59e0b" },
-  { id: 4, name: "Development Sprint", startWeek: 3, duration: 2, progress: 40, color: "#0ea5e9" },
-  { id: 5, name: "QA & Review", startWeek: 5, duration: 1, progress: 10, color: "#ec4899" },
+  { id: 1, name: "Sprint 12 planning", startWeek: 0, duration: 1, progress: 100, color: "#6366f1" },
+  { id: 2, name: "Auth & roles (WIP)", startWeek: 0, duration: 2, progress: 55, color: "#0ea5e9" },
+  { id: 3, name: "Issue tracker MVP", startWeek: 1, duration: 2, progress: 40, color: "#22c55e" },
+  { id: 4, name: "AI gateway stub", startWeek: 3, duration: 2, progress: 25, color: "#f59e0b" },
+  { id: 5, name: "Reporting dashboards", startWeek: 4, duration: 2, progress: 10, color: "#ec4899" },
 ];

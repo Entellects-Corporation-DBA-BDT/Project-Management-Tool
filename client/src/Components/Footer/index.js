@@ -1,11 +1,13 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__brand">◆ FlowSpace</div>
+      <div className="footer__brand">◆ TeamFlow Manager</div>
       <p className="footer__tagline">
-        Any technology. Any platform. Anywhere in the world. One workspace.
+        One place for project status, issues, tasks, collaboration, reporting, and AI-assisted intelligence.
       </p>
-      <p className="footer__copy">© {new Date().getFullYear()} FlowSpace. All rights reserved.</p>
+      <p className="footer__copy">
+        © {new Date().getFullYear()} TeamFlow Manager. Early development preview.
+      </p>
     </footer>
   );
 };

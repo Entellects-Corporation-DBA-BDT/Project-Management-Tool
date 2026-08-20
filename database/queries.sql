@@ -1,7 +1,6 @@
--- Reporting queries against flowspace_db, for dashboards and workload views.
--- Run with: psql -U postgres -d flowspace_db -f queries.sql
+-- Reporting queries against teamflow_db.
+--   psql -U postgres -d teamflow_db -f queries.sql
 
--- Workload management: open task count and average progress per assignee.
 SELECT
     assignee,
     COUNT(*) AS open_tasks,
@@ -11,7 +10,6 @@ WHERE progress < 100
 GROUP BY assignee
 ORDER BY open_tasks DESC;
 
--- Dashboards: project counts by status per workspace.
 SELECT
     w.name AS workspace_name,
     p.status,
@@ -21,7 +19,6 @@ JOIN workspaces w ON w.id = p.workspace_id
 GROUP BY w.name, p.status
 ORDER BY w.name, p.status;
 
--- Gantt chart: upcoming milestones in the next 30 days, most urgent first.
 SELECT
     p.name AS project_name,
     m.name AS milestone_name,
@@ -32,3 +29,11 @@ JOIN projects p ON p.id = m.project_id
 WHERE m.is_complete = FALSE
   AND m.due_date BETWEEN CURRENT_DATE AND CURRENT_DATE + INTERVAL '30 days'
 ORDER BY m.due_date ASC;
+
+SELECT
+    status,
+    type,
+    COUNT(*) AS issue_count
+FROM issues
+GROUP BY status, type
+ORDER BY status, type;

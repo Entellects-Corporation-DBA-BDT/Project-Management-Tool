@@ -1,16 +1,20 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <header className="navbar">
-      <div className="navbar__brand">
-        <span className="navbar__logo">◆</span> FlowSpace
-      </div>
+      <Link to="/" className="navbar__brand">
+        <span className="navbar__logo">◆</span> TeamFlow Manager
+      </Link>
       <nav className="navbar__links">
-        <a href="#tools">Tools</a>
+        <a href="#tools">Product</a>
         <a href="#workspace">Workspace</a>
-        <a href="#tasks">Task Management</a>
-        <a href="#gantt">Gantt Chart</a>
+        <a href="#tasks">Execution</a>
+        <a href="#gantt">Timeline</a>
       </nav>
-      <button className="navbar__cta">Set Up Your Workspace</button>
+      <Link to="/login" className="navbar__cta">
+        Open workspace
+      </Link>
     </header>
   );
 };

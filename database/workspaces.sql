@@ -1,13 +1,10 @@
--- Core tables for flowspace_db: workspaces and their members.
--- Creates the database, so run this before schema.sql:
+-- Core identity tables for TeamFlow Manager.
 --   psql -U postgres -f workspaces.sql
---   psql -U postgres -d flowspace_db -f schema.sql
 
-CREATE DATABASE flowspace_db;
+CREATE DATABASE teamflow_db;
 
-\c flowspace_db
+\c teamflow_db
 
--- Workspaces: the dedicated environment a team sets up before creating projects.
 CREATE TABLE workspaces (
     id              SERIAL PRIMARY KEY,
     name            VARCHAR(100) NOT NULL UNIQUE,
@@ -17,7 +14,7 @@ CREATE TABLE workspaces (
     created_at      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
--- Users: members invited into a workspace, from any platform/technology.
+-- Profiles will later map to Supabase Auth (auth.users).
 CREATE TABLE users (
     id              SERIAL PRIMARY KEY,
     workspace_id    INTEGER NOT NULL REFERENCES workspaces(id) ON DELETE CASCADE,
