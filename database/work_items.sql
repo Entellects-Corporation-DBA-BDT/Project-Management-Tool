@@ -20,15 +20,20 @@ CREATE TABLE sprints (
     ends_on         DATE NOT NULL,
     status          VARCHAR(20) NOT NULL DEFAULT 'planning'
                         CHECK (status IN ('planning', 'active', 'closed')),
-    created_at      TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at      TIMESTAMP NOT NULL DEFAULT NOW(),
+    CONSTRAINT chk_sprints_dates CHECK (ends_on >= starts_on)
 );
+
+CREATE UNIQUE INDEX uq_sprints_one_active
+    ON sprints(project_id)
+    WHERE status = 'active';
 
 CREATE TABLE issues (
     id              SERIAL PRIMARY KEY,
     project_id      INTEGER NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
     epic_id         INTEGER REFERENCES epics(id) ON DELETE SET NULL,
     sprint_id       INTEGER REFERENCES sprints(id) ON DELETE SET NULL,
-    key             VARCHAR(20) NOT NULL UNIQUE,
+    key             VARCHAR(20) NOT NULL,
     type            VARCHAR(20) NOT NULL
                         CHECK (type IN ('epic', 'story', 'task', 'bug')),
     title           VARCHAR(240) NOT NULL,
@@ -42,8 +47,10 @@ CREATE TABLE issues (
     updated_at      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE UNIQUE INDEX uq_issues_project_key ON issues(project_id, key);
 CREATE INDEX idx_issues_project_id ON issues(project_id);
 CREATE INDEX idx_issues_sprint_id ON issues(sprint_id);
+CREATE INDEX idx_issues_status ON issues(status);
 
 CREATE TRIGGER trg_issues_updated_at
     BEFORE UPDATE ON issues
