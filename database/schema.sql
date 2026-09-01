@@ -30,6 +30,7 @@ CREATE TABLE projects (
 );
 
 CREATE INDEX idx_projects_workspace_id ON projects(workspace_id);
+CREATE UNIQUE INDEX uq_projects_workspace_name ON projects(workspace_id, name);
 
 CREATE TRIGGER trg_projects_updated_at
     BEFORE UPDATE ON projects
