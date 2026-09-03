@@ -21,11 +21,11 @@ const Reports = () => {
         </div>
       </div>
       <div className="panel">
-        <h2>Still to wire</h2>
+        <h2>Upcoming</h2>
         <ul className="risk-list">
           <li>Structured logs, traces, and error tracking</li>
-          <li>AI usage and cost monitoring via the gateway</li>
-          <li>Admin dashboard for roles and entitlements</li>
+          <li>AI usage and cost breakdown per workspace</li>
+          <li>Role-based admin dashboard with entitlement controls</li>
         </ul>
       </div>
     </section>

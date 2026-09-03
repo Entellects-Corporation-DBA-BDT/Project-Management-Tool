@@ -37,3 +37,16 @@ SELECT
 FROM issues
 GROUP BY status, type
 ORDER BY status, type;
+
+-- Sprint velocity: completed story points per closed sprint.
+SELECT
+    s.name          AS sprint_name,
+    s.starts_on,
+    s.ends_on,
+    COUNT(i.id)     AS issues_closed,
+    s.ends_on - s.starts_on AS sprint_days
+FROM sprints s
+LEFT JOIN issues i ON i.sprint_id = s.id AND i.status = 'done'
+WHERE s.status = 'closed'
+GROUP BY s.id, s.name, s.starts_on, s.ends_on
+ORDER BY s.ends_on DESC;

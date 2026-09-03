@@ -15,15 +15,23 @@ export async function requestInsight(kind, payload = {}) {
     };
   }
 
-  const response = await fetch("/functions/v1/ai-gateway", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ kind, payload }),
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
 
-  if (!response.ok) {
-    throw new Error("AI gateway request failed");
+  try {
+    const response = await fetch("/functions/v1/ai-gateway", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind, payload }),
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      throw new Error(`AI gateway responded with ${response.status}`);
+    }
+
+    return response.json();
+  } finally {
+    clearTimeout(timeout);
   }
-
-  return response.json();
 }

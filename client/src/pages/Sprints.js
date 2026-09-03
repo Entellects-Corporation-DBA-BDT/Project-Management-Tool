@@ -7,7 +7,8 @@ const Sprints = () => {
     <section className="page">
       <h1>Sprint 12</h1>
       <p className="page__lede">
-        Planning board preview. Drag-and-drop and sprint metrics are not wired.
+        Active sprint board grouped by workflow status. Select a card to view
+        details or reassign work.
       </p>
       <div className="board">
         {sprintColumns.map((column) => (
